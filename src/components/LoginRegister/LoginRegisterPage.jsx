@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const LoginRegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     // Validate email and password, perform login logic
@@ -12,7 +13,7 @@ export const LoginRegisterPage = () => {
       // Save to local storage
       localStorage.setItem('user', JSON.stringify({ email, password }));
       // Redirect to the main page
-      window.location.href = '/main';
+      navigate('/')
     } else {
       alert('Please enter a valid email and password.');
     }

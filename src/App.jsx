@@ -8,8 +8,8 @@ export const App = () => {
     <Router>
       <Routes>
 
-      <Route path="/" exact component={LoginRegisterPage} />
-      <Route path="/main" component={MainPage} />
+      <Route path="/login" exact component={LoginRegisterPage} />
+      <Route path="/" component={MainPage} />
       {/* Add additional routes as needed */}
       </Routes>
     </Router>
