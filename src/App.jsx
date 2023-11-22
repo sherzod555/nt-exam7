@@ -1,11 +1,19 @@
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LoginRegisterPage from './components/LoginRegister/LoginRegisterPage';
+import MainPage from './components/Main/MainPage';
 
-function App() {
+export const App = () => {
   return (
-    <>
-    
-    </>
+    <Router>
+      <Routes>
+
+      <Route path="/" exact component={LoginRegisterPage} />
+      <Route path="/main" component={MainPage} />
+      {/* Add additional routes as needed */}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
