@@ -4,6 +4,7 @@ import micro from "../../assets/Microphone.svg";
 import img_icon from "../../assets/Image.svg";
 import gpt from "../../assets/gpt-logo-green.svg";
 import user from "../../assets/person.svg";
+import "./chat.css"
 
 
 export const Chat = () => {
@@ -44,9 +45,9 @@ export const Chat = () => {
   };
 
   return (
-    <div className="container mx-auto w-[950px]">
+    <div className="container mx-auto w-[950px] max-h-screen">
       <div className="p-10 flex flex-col justify-between w-full h-full">
-        <div>
+        <div className="h-full custom_scroll overflow-y-scroll">
           
           {chatHistory.map((chat, index) => (
             <div
@@ -56,14 +57,14 @@ export const Chat = () => {
               }`}
             >
               {chat.type === "user" ? (
-                <div className="flex items-start gap-x-5"><img className="rounded-full w-8 h-auto" src={user} alt="user" /> {chat.message.response}</div>
+                <div className="flex items-start text-start gap-x-5"><img className="rounded-full w-8 h-auto" src={user} alt="user" /> {chat.message}</div>
               ) : (
-                <div className="flex items-start gap-x-5">{chat.message.response} <img className="rounded-full w-8 h-auto" src={gpt} alt="gpt" /></div>
+                <div className="flex items-start text-start gap-x-5">{chat.message.response} <img className="rounded-full w-8 h-auto" src={gpt} alt="gpt" /></div>
               )}
             </div>
           ))}
         </div>
-        <div className="w-full p-5 bg-[#F7F9FB] rounded-2xl flex items-center justify-between gap-x-3 ">
+        <form className="w-full p-5 bg-[#F7F9FB] rounded-2xl flex items-center justify-between gap-x-3 ">
           <div className="flex items-center gap-x-4 w-full">
             <img className="w-5 h-5 cursor-pointer" src={micro} alt="micro" />
             <img className="w-5 h-5 cursor-pointer" src={img_icon} alt="img" />
@@ -75,10 +76,10 @@ export const Chat = () => {
               placeholder="Type message"
             />
           </div>
-          <button onClick={handleSendQuestion}>
+          <button type="submit" >
             <img src={send_icon} alt="send" />
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );
