@@ -113,19 +113,17 @@ export const Sidebar = () => {
       </div>
 
       <div className="md:hidden block fixed bottom-0 w-screen my-5">
-        <ul className="flex items-center justify-around">
+        <ul className="flex items-center justify-around gap-x-2">
           <li>
             <button>
-              <img className="w-6" src={profile_icon} alt="profile" />
+              <img className="sm:w-6 w-5 h-auto" src={profile_icon} alt="profile" />
             </button>
           </li>
 
           <li>
-            <button
-              onClick={toggleMode}
-            >
+            <button onClick={toggleMode}>
               <img
-                className="w-6"
+                className="sm:w-6 w-5 h-auto"
                 src={isDarkMode ? sun_icon : moon_icon}
                 alt={isDarkMode ? "Light Mode" : "Dark Mode"}
               />
@@ -139,25 +137,21 @@ export const Sidebar = () => {
                 isDarkMode
                   ? "bg-[#c6c7f8] hover:bg-[#e3e3e3] text-[#1c1c1c]"
                   : " bg-[#1c1c1c] hover:bg-[#565656] text-white"
-              }   rounded-xl px-3 py-3  `}
+              }   rounded-full px-4 pb-1  `}
             >
-              <p className="text-xl text-center">+</p>
+              <p className="text-3xl text-center">+</p>
             </button>
           </li>
 
           <li>
-            <button
-              onClick={handleClearConversation}
-            >
-              <img className="w-6" src={del_icon} alt="delete" />
+            <button onClick={handleClearConversation}>
+              <img className="sm:w-6 w-5 h-auto" src={del_icon} alt="delete" />
             </button>
           </li>
 
           <li>
-            <button
-              onClick={handleLogout}
-            >
-              <img className="w-6" src={logout_icon} alt="logout" />
+            <button onClick={handleLogout}>
+              <img className="sm:w-6 w-5 h-auto" src={logout_icon} alt="logout" />
             </button>
           </li>
         </ul>
