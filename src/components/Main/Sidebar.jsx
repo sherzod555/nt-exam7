@@ -14,7 +14,7 @@ import chat_icon from "../../assets/ChatText.svg";
 
 export const Sidebar = () => {
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
+  const { logout, isDarkMode, toggleMode } = useContext(AuthContext);
 
   const [chats, setChats] = useState([]);
 
@@ -25,8 +25,10 @@ export const Sidebar = () => {
   };
 
   const handleClearConversation = () => {
-    //ishlatish kere
-    console.log("Clearing conversation...");
+    localStorage.removeItem('chatHistory');
+    setChats([]);
+    console.log('Conversations cleared.');
+    window.location.reload(); // Refresh the page
   };
 
   const handleLogout = () => {
@@ -34,18 +36,12 @@ export const Sidebar = () => {
     navigate("/auth/login");
   };
 
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const toggleMode = () => {
-    setIsDarkMode((prevMode) => !prevMode);
-  };
+  
 
   return (
     <>
       <div
-        className={`hidden md:block border-e border-[#C6C7F8] w-[282px] h-screen ${
-          isDarkMode ? "bg-[#1c1c1c]" : "bg-inherit"
-        }`}
+        className={`hidden md:block border-e border-[#C6C7F8] w-[282px] h-screen`}
       >
         <div className="py-5 flex flex-col justify-between w-full h-full">
           <div className="px-5 w-full custom_scroll overflow-y-scroll">

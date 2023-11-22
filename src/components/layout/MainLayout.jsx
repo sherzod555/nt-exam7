@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Sidebar from '../Main/Sidebar';
 import { Outlet, useNavigate } from 'react-router-dom';
 import AuthContext from '../context';
@@ -8,6 +8,8 @@ export const MainLayout = () => {
   const {user} = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const { isDarkMode } = useContext(AuthContext);
+
   useEffect(() => {
     if (!user) {
       navigate('/auth/login');
@@ -15,7 +17,7 @@ export const MainLayout = () => {
   }, [user]);
 
   return (
-    <div className='flex '>
+    <div className={`flex ${isDarkMode ? "bg-[#1c1c1c]" : "bg-inherit"}`}>
       <Sidebar />
       <Outlet />
     </div>

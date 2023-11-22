@@ -1,10 +1,14 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect  } from 'react';
 
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   const fromLocalStorage = localStorage.getItem('user');
   const [user, setUser] = useState(fromLocalStorage);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const storedMode = localStorage.getItem('isDarkMode');
+    return storedMode ? JSON.parse(storedMode) : false;
+  });
 
   const login = (user) => {
     localStorage.setItem('user', JSON.stringify(user));
@@ -15,6 +19,17 @@ function AuthProvider({ children }) {
     localStorage.removeItem('user');
     setUser(null);
   };
+  const toggleMode = () => {
+    setIsDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      localStorage.setItem('isDarkMode', JSON.stringify(newMode));
+      return newMode;
+    });
+  };
+
+  useEffect(() => {
+    document.body.classList.toggle('dark', isDarkMode);
+  }, [isDarkMode]);
 
   return (
     <AuthContext.Provider
@@ -22,6 +37,8 @@ function AuthProvider({ children }) {
         user,
         login,
         logout,
+        isDarkMode,
+        toggleMode,
       }}>
       {children}
     </AuthContext.Provider>

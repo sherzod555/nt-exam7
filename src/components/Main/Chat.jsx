@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import {useState, useContext} from "react";
+import AuthContext from "../context";
 import send_icon from "../../assets/PaperPlaneRight.svg";
 import micro from "../../assets/Microphone.svg";
 import img_icon from "../../assets/Image.svg";
@@ -12,6 +13,9 @@ export const Chat = () => {
     const storedChatHistory = localStorage.getItem("chatHistory");
     return storedChatHistory ? JSON.parse(storedChatHistory) : [];
   });
+
+
+  const { isDarkMode } = useContext(AuthContext);
 
   const handleInputChange = (e) => {
     setQuestion(e.target.value);
@@ -48,11 +52,7 @@ export const Chat = () => {
     }
   };
 
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  const toggleMode = () => {
-    setIsDarkMode((prevMode) => !prevMode);
-  };
+ 
 
   return (
     <div className="container mx-auto w-[950px] max-h-screen">
