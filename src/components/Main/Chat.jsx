@@ -30,7 +30,7 @@ export const Chat = () => {
 
     try {
       const response = await fetch(url, options);
-      const result = await response.text();
+      const result = await response.json();
       const newChat = [
         ...chatHistory,
         { type: "user", message: question },
@@ -47,16 +47,7 @@ export const Chat = () => {
     <div className="container mx-auto w-[950px]">
       <div className="p-10 flex flex-col justify-between w-full h-full">
         <div>
-          {/* {chatHistory.map((chat, index) => (
-            <div
-              key={index}
-              className={
-                chat.type === "user" ? "text-left mb-2 bg-[#F7F9FB] rounded-xl  p-3" : "text-right mb-2 bg-[#cecece] rounded-xl  p-3"
-              }
-            >
-              {chat.message}
-            </div>
-          ))} */}
+          
           {chatHistory.map((chat, index) => (
             <div
               key={index}
@@ -65,9 +56,9 @@ export const Chat = () => {
               }`}
             >
               {chat.type === "user" ? (
-                <div className="flex items-start gap-x-5"><img className="rounded-full w-8 h-auto" src={user} alt="user" /> {chat.message}</div>
+                <div className="flex items-start gap-x-5"><img className="rounded-full w-8 h-auto" src={user} alt="user" /> {chat.message.response}</div>
               ) : (
-                <div className="flex items-start gap-x-5">{chat.message} <img className="rounded-full w-8 h-auto" src={gpt} alt="gpt" /></div>
+                <div className="flex items-start gap-x-5">{chat.message.response} <img className="rounded-full w-8 h-auto" src={gpt} alt="gpt" /></div>
               )}
             </div>
           ))}
