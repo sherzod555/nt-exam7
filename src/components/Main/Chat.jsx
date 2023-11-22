@@ -8,8 +8,11 @@ import "./chat.css"
 
 
 export const Chat = () => {
-  const [question, setQuestion] = useState("");
-  const [chatHistory, setChatHistory] = useState([]);
+  const [question, setQuestion] = useState('');
+  const [chatHistory, setChatHistory] = useState(() => {
+    const storedChatHistory = localStorage.getItem('chatHistory');
+    return storedChatHistory ? JSON.parse(storedChatHistory) : [];
+  });
 
   const handleInputChange = (e) => {
     setQuestion(e.target.value);
@@ -17,7 +20,7 @@ export const Chat = () => {
 
   const handleSendQuestion = async (e) => {
     e.preventDefault();
-    const url = "https://open-ai-chatgpt.p.rapidapi.com/ask";
+    const url = 'https://open-ai-chatgpt.p.rapidapi.com/ask';
     const options = {
       method: "POST",
       headers: {
@@ -39,6 +42,7 @@ export const Chat = () => {
         { type: "gpt", message: result },
       ];
       setChatHistory(newChat);
+      localStorage.setItem('chatHistory', JSON.stringify(newChat));
       setQuestion("");
     } catch (error) {
       console.error(error);
@@ -54,7 +58,7 @@ export const Chat = () => {
             <div
               key={index}
               className={` mb-3 w-[90%] ${
-                chat.type === "user" ? "text-left bg-[#F7F9FB] rounded-xl  p-3 mr-[10%]" : "ml-[10%] text-right  bg-[#cecece] rounded-xl  p-3"
+                chat.type === "user" ? "text-left bg-[#F7F9FB] rounded-xl  p-3 mr-[10%]" : "ml-[10%] text-left  bg-[#cecece] rounded-xl  p-3"
               }`}
             >
               {chat.type === "user" ? (
