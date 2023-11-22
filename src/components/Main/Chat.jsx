@@ -15,7 +15,8 @@ export const Chat = () => {
     setQuestion(e.target.value);
   };
 
-  const handleSendQuestion = async () => {
+  const handleSendQuestion = async (e) => {
+    e.preventDefault();
     const url = "https://open-ai-chatgpt.p.rapidapi.com/ask";
     const options = {
       method: "POST",
@@ -47,24 +48,24 @@ export const Chat = () => {
   return (
     <div className="container mx-auto w-[950px] max-h-screen">
       <div className="p-10 flex flex-col justify-between w-full h-full">
-        <div className="h-full custom_scroll overflow-y-scroll">
+        <div className="h-full pr-5 custom_scroll overflow-y-scroll">
           
           {chatHistory.map((chat, index) => (
             <div
               key={index}
-              className={`mb-2 w-[90%] ${
+              className={` mb-2 w-[90%] ${
                 chat.type === "user" ? "text-left bg-[#F7F9FB] rounded-xl  p-3 mr-[10%]" : "ml-[10%] text-right  bg-[#cecece] rounded-xl  p-3"
               }`}
             >
               {chat.type === "user" ? (
-                <div className="flex items-start text-start gap-x-5"><img className="rounded-full w-8 h-auto" src={user} alt="user" /> {chat.message}</div>
+                <div className="flex items-start justify-start gap-x-5"><img className="rounded-full w-8 h-auto" src={user} alt="user" /> {chat.message}</div>
               ) : (
-                <div className="flex items-start text-start gap-x-5">{chat.message.response} <img className="rounded-full w-8 h-auto" src={gpt} alt="gpt" /></div>
+                <div className="flex items-start justify-end gap-x-5">{chat.message.response} <img className="rounded-full w-8 h-auto" src={gpt} alt="gpt" /></div>
               )}
             </div>
           ))}
         </div>
-        <form className="w-full p-5 bg-[#F7F9FB] rounded-2xl flex items-center justify-between gap-x-3 ">
+        <form onSubmit={handleSendQuestion} className="w-full p-5 bg-[#F7F9FB] rounded-2xl flex items-center justify-between gap-x-3 ">
           <div className="flex items-center gap-x-4 w-full">
             <img className="w-5 h-5 cursor-pointer" src={micro} alt="micro" />
             <img className="w-5 h-5 cursor-pointer" src={img_icon} alt="img" />
