@@ -19,12 +19,13 @@ export const Sidebar = () => {
   const [chats, setChats] = useState([]);
 
   const handleNewChat = () => {
-    // Implement logic to create a new chat
+    // ishlatish kere
     const newChat = { id: chats.length + 1, title: `Chat ${chats.length + 1}` };
     setChats([...chats, newChat]);
   };
 
   const handleClearConversation = () => {
+    //ishlatish kere
     console.log("Clearing conversation...");
   };
 
