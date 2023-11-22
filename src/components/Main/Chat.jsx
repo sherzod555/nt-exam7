@@ -47,13 +47,13 @@ export const Chat = () => {
 
   return (
     <div className="container mx-auto w-[950px] max-h-screen">
-      <div className="p-10 flex flex-col justify-between w-full h-full">
+      <div className="pt-5 flex flex-col justify-between w-full h-full">
         <div className="h-full pr-5 custom_scroll overflow-y-scroll">
           
           {chatHistory.map((chat, index) => (
             <div
               key={index}
-              className={` mb-2 w-[90%] ${
+              className={` mb-3 w-[90%] ${
                 chat.type === "user" ? "text-left bg-[#F7F9FB] rounded-xl  p-3 mr-[10%]" : "ml-[10%] text-right  bg-[#cecece] rounded-xl  p-3"
               }`}
             >
@@ -65,7 +65,7 @@ export const Chat = () => {
             </div>
           ))}
         </div>
-        <form onSubmit={handleSendQuestion} className="w-full p-5 bg-[#F7F9FB] rounded-2xl flex items-center justify-between gap-x-3 ">
+        <form onSubmit={handleSendQuestion} className="w-full mb-10 mt-1 p-5 bg-[#F7F9FB] rounded-2xl flex items-center justify-between gap-x-3 ">
           <div className="flex items-center gap-x-4 w-full">
             <img className="w-5 h-5 cursor-pointer" src={micro} alt="micro" />
             <img className="w-5 h-5 cursor-pointer" src={img_icon} alt="img" />
