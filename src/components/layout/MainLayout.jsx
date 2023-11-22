@@ -3,6 +3,7 @@ import Sidebar from '../Main/Sidebar';
 import { Outlet, useNavigate } from 'react-router-dom';
 import AuthContext from '../context';
 
+
 export const MainLayout = () => {
   const {user} = useContext(AuthContext);
   const navigate = useNavigate();
