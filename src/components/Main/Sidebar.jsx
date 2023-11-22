@@ -1,21 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import AuthContext from '../context';
 
 export const Sidebar = () => {
+  const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
+
   const handleClearConversation = () => {
     console.log('Clearing conversation...');
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    window.location.href = '/';
+    logout();
+    navigate('/auth/login');
   };
 
   return (
-    <div>
+    <div className='bg-slate-100 h-screen'>
       <h2>Sidebar</h2>
-      <div>
-        <Link to="/main">Home</Link>
+      <div className='flex flex-col'>
+        <Link to="/">Home</Link>
         <Link to="/settings">Settings</Link>
         <button onClick={handleClearConversation}>Clear Conversation</button>
         <button onClick={handleLogout}>Logout</button>
