@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../context";
+import AuthContext from "../../context/authContext";
 import { loginUser } from "../../fake-api";
 
 import LogoBlack from "../../assets/gpt_black_logo.svg";

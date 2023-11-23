@@ -3,8 +3,11 @@ import { createContext, useState, useEffect  } from 'react';
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const fromLocalStorage = localStorage.getItem('user');
-  const [user, setUser] = useState(fromLocalStorage);
+  const [user, setUser] = useState(() => {
+    const fromLocalStorage = localStorage.getItem('user');
+    return fromLocalStorage ? JSON.parse(fromLocalStorage) : null;
+  });
+  
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const storedMode = localStorage.getItem('isDarkMode');
     return storedMode ? JSON.parse(storedMode) : false;
