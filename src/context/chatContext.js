@@ -1,11 +1,11 @@
-import { createContext, useState } from 'react';
+import { createContext, useState } from "react";
 
 const ChatContext = createContext();
 
 function ChatProvider({ children }) {
-  const [currentChat, setCurrentChat] = useState('new');
+  const [currentChat, setCurrentChat] = useState("new");
   const [chats, setChats] = useState(() => {
-    const fromLocalStorage = localStorage.getItem('chats');
+    const fromLocalStorage = localStorage.getItem("chats");
     return fromLocalStorage ? JSON.parse(fromLocalStorage) : {};
   });
 
@@ -13,7 +13,7 @@ function ChatProvider({ children }) {
     const id = crypto.randomUUID();
     const newChats = { ...chats, [id]: chat };
     setChats(newChats);
-    localStorage.setItem('chats', JSON.stringify(newChats));
+    localStorage.setItem("chats", JSON.stringify(newChats));
     return id;
   };
 
@@ -26,12 +26,12 @@ function ChatProvider({ children }) {
       },
     };
     setChats(newChats);
-    localStorage.setItem('chats', JSON.stringify(newChats));
+    localStorage.setItem("chats", JSON.stringify(newChats));
   };
 
   const clearChats = () => {
-    localStorage.removeItem('chats');
-    setCurrentChat('new');
+    localStorage.removeItem("chats");
+    setCurrentChat("new");
     setChats({});
   };
 
@@ -44,7 +44,8 @@ function ChatProvider({ children }) {
         setCurrentChat,
         addNewChat,
         newMessage,
-      }}>
+      }}
+    >
       {children}
     </ChatContext.Provider>
   );

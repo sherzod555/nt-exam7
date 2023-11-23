@@ -122,9 +122,9 @@ export const Chat = () => {
       >
         <div className="h-full px-5 custom_scroll overflow-y-scroll">
           {chats[currentChat] ? (
-            chats[currentChat].messages.map((message) => (
+            chats[currentChat].messages.map((message, idx) => (
               <div
-                key={message.id}
+                key={idx}
                 className={` mb-3 w-[90%] ${
                   message.type === "user"
                     ? "text-left bg-[#F7F9FB] rounded-xl  p-3 mr-[10%]"
@@ -155,7 +155,11 @@ export const Chat = () => {
           ) : (
             <div className="flex flex-col gap-y-8 md:gap-y-16 items-center justify-center h-full">
               <div className="flex items-center gap-x-4">
-                <img className="w-10 h-10 md:w-16 md:h-16" src={BlackLogo} alt="logo" />
+                <img
+                  className="w-10 h-10 md:w-16 md:h-16"
+                  src={BlackLogo}
+                  alt="logo"
+                />
                 <div>
                   <h2 className="text-xl md:text-5xl font-semibold">ChatGPT</h2>
                   <p className="text-[10px] text-right font-semibold">
@@ -171,15 +175,30 @@ export const Chat = () => {
               </div>
 
               <div className="flex items-center gap-x-3 md:gap-x-10">
-                {mockData.map((item) => (
-                  <div className=" lg:w-64 grid gap-y-2 md:gap-y-4">
-                    <div className="flex flex-col items-center justify-center gap-y-1 md:gap-y-2" key={item.id}>
-                      <img className="w-5 h-5 md:w-8 md:h-8" src={item.image} alt={item.image_title} />
-                      <p className="sm:text-sm text-xs lg:text-lg font-medium md:font-semibold">{item.image_title}</p>
+                {mockData.map((item, idx) => (
+                  <div key={idx} className=" lg:w-64 grid gap-y-2 md:gap-y-4">
+                    <div
+                      className="flex flex-col items-center justify-center gap-y-1 md:gap-y-2"
+                      key={item.id}
+                    >
+                      <img
+                        className="w-5 h-5 md:w-8 md:h-8"
+                        src={item.image}
+                        alt={item.image_title}
+                      />
+                      <p className="sm:text-sm text-xs lg:text-lg font-medium md:font-semibold">
+                        {item.image_title}
+                      </p>
                     </div>
-                    <button className="text-left w-full bg-[#F7F9FB] py-1 px-2 text-[9px] lg:text-sm rounded-lg hover:shadow-md">{item.button_one}</button>
-                    <button className="text-left w-full bg-[#F7F9FB] py-1 px-2 text-[9px] lg:text-sm rounded-lg hover:shadow-md">{item.button_two}</button>
-                    <button className="text-left w-full bg-[#F7F9FB] py-1 px-2 text-[9px] lg:text-sm rounded-lg hover:shadow-md">{item.button_three}</button>
+                    <button className="text-left w-full bg-[#F7F9FB] py-1 px-2 text-[9px] lg:text-sm rounded-lg hover:shadow-md">
+                      {item.button_one}
+                    </button>
+                    <button className="text-left w-full bg-[#F7F9FB] py-1 px-2 text-[9px] lg:text-sm rounded-lg hover:shadow-md">
+                      {item.button_two}
+                    </button>
+                    <button className="text-left w-full bg-[#F7F9FB] py-1 px-2 text-[9px] lg:text-sm rounded-lg hover:shadow-md">
+                      {item.button_three}
+                    </button>
                   </div>
                 ))}
               </div>

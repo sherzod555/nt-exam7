@@ -1,18 +1,17 @@
-import React, { useContext, useEffect } from 'react';
-import Sidebar from '../Main/Sidebar';
-import { Outlet, useNavigate } from 'react-router-dom';
-import AuthContext from '../../context/authContext';
-
+import React, { useContext, useEffect } from "react";
+import Sidebar from "../Main/Sidebar";
+import { Outlet, useNavigate } from "react-router-dom";
+import AuthContext from "../../context/authContext";
 
 export const MainLayout = () => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const { isDarkMode } = useContext(AuthContext);
 
   useEffect(() => {
     if (!user) {
-      navigate('/auth/login');
+      navigate("/auth/login");
     }
   }, [user, navigate]);
 
