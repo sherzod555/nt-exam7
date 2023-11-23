@@ -14,7 +14,7 @@ import ChatContext from '../../context/chatContext';
 
 export const Sidebar = () => {
   const navigate = useNavigate();
-  const { logout, isDarkMode, toggleMode } = useContext(AuthContext);
+  const { logout, isDarkMode, toggleMode, user } = useContext(AuthContext);
   const { chats, setCurrentChat, clearChats } = useContext(ChatContext);
 
   const handleNewChat = () => {
@@ -93,10 +93,10 @@ export const Sidebar = () => {
         <div className={`w-full h-full ${isDarkMode ? 'filter invert bg-white/70' : 'bg-black/70'} absolute z-20 top-0 ${isOpen? 'block' : 'hidden'} `}>
                <div className='w-[80%] md:w-[60%] lg:min-w-[40%] xl:w-[25%] 2xl:w-[10%] mx-auto mt-10 md:mt-20 bg-[#e3e3e3] rounded-2xl p-4  md:p-5 flex flex-col items-start gap-y-4 md:gap-y-5'>
                 <p className='flex items-center gap-x-3'>
-                  Your e-mail: <p className='py-2 px-3 bg-gray-400 rounded-xl'>Username</p>
+                  Your e-mail: <p className='py-2 px-3 bg-gray-400 rounded-xl'>{user ? user.email : 'User email'}</p>
                 </p>
                 <p className='flex items-center gap-x-3'>
-                  Your password: <p className='py-2 px-3 bg-gray-400 rounded-xl'>password</p>
+                  Your password: <p className='py-2 px-3 bg-gray-400 rounded-xl'>{user ? user.password : 'User password'}</p>
                 </p>
 
                 <button onClick={()=>setIsOpen(false)} className='py-2 w-full bg-black rounded-xl text-white z-40'>
